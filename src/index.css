@@ -1,0 +1,164 @@
+@import "tailwindcss";
+@import "@fontsource/space-grotesk/400.css";
+@import "@fontsource/space-grotesk/500.css";
+@import "@fontsource/space-grotesk/600.css";
+@import "@fontsource/space-grotesk/700.css";
+
+@theme {
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+
+  --color-ink: #05070a;
+  --color-ink-soft: #0a0f0d;
+  --color-panel: #0d1512;
+  --color-line: #1c2b24;
+
+  --color-acid: #6bff8f;
+  --color-acid-soft: #b8ffce;
+  --color-acid-dim: #2e6b45;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Compensar la navbar fija al navegar con anclas */
+section[id] {
+  scroll-margin-top: 6rem;
+}
+
+/* Foco visible para navegación por teclado */
+:focus-visible {
+  outline: 2px solid var(--color-acid);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Respetar la preferencia de movimiento reducido del usuario */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-ink);
+  color: #eef7f0;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100svh;
+}
+
+::selection {
+  background: var(--color-acid);
+  color: #05070a;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-ink);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-acid-dim);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-acid);
+}
+
+.glass {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0.08) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  /* Promueve el elemento a su propia capa de composición desde el primer
+     frame, para que el blur se aplique de inmediato (evita el flash donde
+     la tarjeta se ve sin blur al cargar). */
+  will-change: backdrop-filter;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05),
+    0 12px 40px -8px rgba(0, 0, 0, 0.5);
+}
+
+.glass-btn {
+  position: relative;
+  background: rgba(107, 255, 143, 0.08);
+  border: 1px solid rgba(107, 255, 143, 0.35);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  will-change: backdrop-filter;
+  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.glass-btn:hover {
+  background: rgba(107, 255, 143, 0.16);
+  border-color: rgba(107, 255, 143, 0.7);
+  box-shadow: 0 0 30px -4px rgba(107, 255, 143, 0.55);
+  transform: translateY(-2px);
+}
+
+.glass-btn:active {
+  transform: translateY(0px) scale(0.98);
+}
+
+.glass-btn-primary {
+  background: rgba(107, 255, 143, 0.22);
+  border-color: rgba(107, 255, 143, 0.65);
+  box-shadow: 0 0 26px -6px rgba(107, 255, 143, 0.6);
+}
+
+.glass-btn-primary:hover {
+  background: rgba(107, 255, 143, 0.34);
+  box-shadow: 0 0 36px -4px rgba(107, 255, 143, 0.8);
+}
+
+.text-gradient {
+  background: linear-gradient(120deg, #eafff0 0%, #6bff8f 55%, #2e6b45 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.noise-overlay {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  opacity: 0.03;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.section-label {
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  color: var(--color-acid);
+}

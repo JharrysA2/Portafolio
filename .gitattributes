@@ -1,0 +1,14 @@
+# Normalizar saltos de línea: el repo guarda LF, sin conversiones ni avisos
+* text=auto eol=lf
+
+# Archivos binarios: nunca convertir
+*.pdf binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.webp binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
