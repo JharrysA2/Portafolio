@@ -88,9 +88,10 @@ body {
 }
 
 .glass {
-  /* Base oscura translúcida: si el navegador no puede difuminar el canvas
-     WebGL (bug de Chromium), las tarjetas siguen viéndose como vidrio
-     oscuro en lugar de dejar pasar el fondo nítido. */
+  /* Vidrio oscuro: Chromium (Brave/Chrome/Edge) no difumina canvas WebGL
+     con backdrop-filter (bug conocido del navegador). Por eso la base es
+     casi opaca: las tarjetas se ven como paneles de cristal oscuro en
+     cualquier navegador, y el blur queda como mejora donde sí funciona. */
   background:
     linear-gradient(
       135deg,
@@ -98,7 +99,7 @@ body {
       rgba(255, 255, 255, 0.04) 40%,
       rgba(255, 255, 255, 0.07) 100%
     ),
-    rgba(9, 15, 12, 0.5);
+    rgba(8, 13, 11, 0.84);
   border: 1px solid rgba(255, 255, 255, 0.14);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
@@ -110,7 +111,9 @@ body {
 
 .glass-btn {
   position: relative;
-  background: rgba(107, 255, 143, 0.08);
+  background:
+    linear-gradient(135deg, rgba(107, 255, 143, 0.14), rgba(107, 255, 143, 0.05)),
+    rgba(9, 15, 12, 0.72);
   border: 1px solid rgba(107, 255, 143, 0.35);
   backdrop-filter: blur(14px) saturate(160%);
   -webkit-backdrop-filter: blur(14px) saturate(160%);
@@ -129,13 +132,17 @@ body {
 }
 
 .glass-btn-primary {
-  background: rgba(107, 255, 143, 0.22);
+  background:
+    linear-gradient(135deg, rgba(107, 255, 143, 0.28), rgba(107, 255, 143, 0.12)),
+    rgba(9, 15, 12, 0.72);
   border-color: rgba(107, 255, 143, 0.65);
   box-shadow: 0 0 26px -6px rgba(107, 255, 143, 0.6);
 }
 
 .glass-btn-primary:hover {
-  background: rgba(107, 255, 143, 0.34);
+  background:
+    linear-gradient(135deg, rgba(107, 255, 143, 0.4), rgba(107, 255, 143, 0.18)),
+    rgba(9, 15, 12, 0.72);
   box-shadow: 0 0 36px -4px rgba(107, 255, 143, 0.8);
 }
 
