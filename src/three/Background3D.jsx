@@ -22,7 +22,7 @@ export default function Background3D() {
   return (
     <CanvasErrorBoundary>
       <div
-        className={`fixed inset-0 -z-10 transition-opacity duration-1000 ${
+        className={`fixed inset-0 -z-10 transition-opacity duration-300 ${
           ready ? "opacity-100" : "opacity-0"
         }`}
         aria-hidden="true"

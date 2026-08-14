@@ -15,6 +15,14 @@ const item = {
   show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
 };
 
+// Para los elementos glass: solo opacidad, sin transform. Chromium retrasa
+// el backdrop-filter mientras el contenedor tiene un transform animado
+// (el blur aparecería después de la animación de entrada).
+const itemFade = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
+};
+
 export default function Hero() {
   return (
     <section
@@ -27,7 +35,7 @@ export default function Hero() {
         animate="show"
         className="flex max-w-3xl flex-col items-center"
       >
-        <motion.div variants={item} className="mb-8">
+        <motion.div variants={itemFade} className="mb-8">
           <div className="glass flex items-center gap-2 rounded-full px-4 py-1.5 text-xs text-white/70">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-acid opacity-60" />
@@ -37,7 +45,7 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        <motion.div variants={item} className="mb-6">
+        <motion.div variants={itemFade} className="mb-6">
           <div className="glass h-24 w-24 overflow-hidden rounded-full border-2 border-acid/40 shadow-[0_0_40px_-8px_rgba(107,255,143,0.6)] sm:h-28 sm:w-28">
             <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-acid-dim/40 to-panel text-3xl font-bold text-acid">
               JG
